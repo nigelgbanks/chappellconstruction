@@ -26,27 +26,36 @@ $defaults = array(
 );
 add_theme_support('custom-background', $defaults);
 
-// Add support for custom header
-add_theme_support('genesis-custom-header', array(
- 'width' => 1152,
- 'height' => 120
-));
-
-// Remove support for a Static Front Page.
-remove_theme_support('static-front-page');
-
 // Add HTML5 Support
 add_theme_support('html5');
 
-add_action('genesis_setup','chappell_construction_theme_setup', 15);
-function child_theme_setup() {
-  // Add Nav to Header
-  add_action('genesis_header', 'chappell_construction_nav_menus');
-}
+// Check if the menu exists
+$menu_exists = wp_get_nav_menu_object('Main');
 
-// Add Nav Menus to Header
-function chappell_construction_nav_menus() {
-  echo '<div class="menus">';
-  wp_nav_menu(array('menu' => 'Primary'));
-  echo '</div><!-- .menus -->';
+// If it doesn't exist, let's create it.
+if (!$menu_exists) {
+  $menu_id = wp_create_nav_menu('Main');
+
+  // Set up default menu items
+  wp_update_nav_menu_item($menu_id, 0, array(
+      'menu-item-title' =>  __('Home'),
+      'menu-item-classes' => 'home',
+      'menu-item-url' => home_url( '/' ),
+      'menu-item-status' => 'publish'));
+
+  wp_update_nav_menu_item($menu_id, 0, array(
+      'menu-item-title' =>  __('Corporate Profile'),
+      'menu-item-url' => home_url( '/profile/' ),
+      'menu-item-status' => 'publish'));
+
+  wp_update_nav_menu_item($menu_id, 0, array(
+      'menu-item-title' =>  __('Residences'),
+      'menu-item-url' => home_url( '/residences/' ),
+      'menu-item-status' => 'publish'));
+
+  wp_update_nav_menu_item($menu_id, 0, array(
+      'menu-item-title' =>  __('Contact'),
+      'menu-item-url' => home_url( '/contact/' ),
+      'menu-item-status' => 'publish'));
 }
+?>

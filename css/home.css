@@ -1,0 +1,72 @@
+/**
+ * Header
+ */
+#front-page-header {
+    padding-top: 20px;
+    background-color:rgba(0,0,0,0.5);
+}
+#tag-line {
+    padding: 20px 15px;
+    color:rgba(255,255,255,0.8);
+    background-color:rgba(0,0,0,0.7);
+}
+#logo {
+    height: 170px;
+    background: url( '../images/logo.png' ) no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin-bottom: 30px;
+}
+
+/**
+ * Navigation
+ */
+.genesis-nav-menu {
+    background-color:rgba(0,0,0,0.3);
+    text-transform:uppercase;
+    text-align: center;
+}
+
+.genesis-nav-menu a {
+    padding: 5px 16px;
+}
+
+.genesis-nav-menu a:hover,
+.genesis-nav-menu .current-menu-item > a,
+.genesis-nav-menu .sub-menu .current-menu-item > a:hover {
+    color: #fff;
+}
+
+.genesis-nav-menu .current-menu-item > a {
+    color: #fde152;
+}
+
+
+/**
+ * Layout
+ */
+/* Mobile Devices ----------- */
+@media only screen
+and (max-width : 960px) {
+/* Styles */
+    .site-container {
+        margin-left: 0;
+    }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 960px) {
+/* Styles */
+    .site-container {
+        margin-left: -33%;
+    }
+}
+
+@media all {
+    .site-header, .site-inner, .wrap {
+        margin: 0 auto;
+        max-width: 550px;
+        padding: 0;
+    }
+}
