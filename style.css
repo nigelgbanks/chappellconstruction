@@ -17,13 +17,139 @@
 /**
  * Changes to the default style.css for all pages.
  */
-body {
+
+/**
+ * Layout
+ */
+body, .site-header, .site-footer, .nav-primary {
     background-color: black;
+    text-align: left;
 }
-.site-header {
-    background-color: transparent;
+.site-header .wrap, .site-footer .wrap {
+    padding: 0;
 }
-.site-header .wrap {
-    padding: 20px 0;
-    padding: 2rem 0;
+
+#nav-logo {
+    height: 48px;
+    width: 48px;
+    float: right;
+    background: url( 'images/logo-icon.png' ) no-repeat;
+    background-size: contain;
+    background-position: center;
+    vertical-align: middle;
+}
+
+#residence-selector {
+    border-radius: 3px;
+    padding: 1em;
+    background-color: #090909;
+}
+
+#residence-selector a {
+    border: none;
+}
+
+#residence-selector .current-residence,
+#page-selector .current-page {
+    color: #008de9;
+}
+
+
+/* Mobile Devices ----------- */
+@media only screen
+and (max-width : 700px) {
+    #nav-logo {
+        display: none;
+    }
+}
+
+/**
+ * Navigation
+ */
+body:not(.home) .genesis-nav-menu {
+    background-color:rgba(0,0,0,0.3);
+    text-transform:uppercase;
+    text-align: left;
+    float: left;
+    width: auto;
+}
+
+body:not(.home) .genesis-nav-menu a {
+    padding: 1.0rem 2.4rem;
+}
+
+a:hover {
+    color: #fff;
+}
+
+.genesis-nav-menu .current-menu-item > a {
+    color: #fde152;
+}
+
+/**
+ * Details
+ */
+#location {
+    text-transform: uppercase;
+    color: #999;
+}
+#location + div {
+    color: #fff;
+}
+
+/*****************************************************
+ * generic styling for ALS elements: outer container
+ ******************************************************/
+
+.als-container {
+    width: 100%;
+    margin: 0px auto;
+    z-index: 0;
+}
+
+/****************************************
+ * viewport styling
+ ***************************************/
+
+.als-viewport {
+    position: relative;
+    overflow: hidden;
+    margin: 0px auto;
+}
+
+/***************************************************
+ * wrapper styling
+ **************************************************/
+
+.als-wrapper {
+    position: relative;
+    /* if you are using a list with <ul> <li> */
+    list-style: none;
+}
+
+/*************************************
+ * item: single list element
+ ************************************/
+
+.als-item {
+    position: relative;
+    display: block;
+    text-align: left;
+    min-width: 100%;
+    cursor: pointer;
+    float: left;
+}
+
+/***********************************************
+ * prev, next: buttons styling
+ **********************************************/
+
+.als-prev, .als-next {
+    cursor: pointer;
+    float: right;
+    position: relative;
+    margin-top: -27px;
+}
+.als-prev {
+    margin-right: 2em;
 }

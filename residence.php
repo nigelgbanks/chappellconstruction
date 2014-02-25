@@ -6,12 +6,16 @@ add_action('init', 'residence_register');
 function residence_register() {
   //Arguments to create post type.
   $args = array(
-    'label' => __('Residences'),
-    'singular_label' => __('Residence'),
+    'label' => 'Residences',
+    'description' => 'Properties in which Chappell Construction have worked on and wish to profile on their site.',
+    'labels' => array(
+      'name' => 'Residences',
+      'singular_label' => 'Residence',
+    ),
     'public' => true,
     'show_ui' => true,
     'capability_type' => 'post',
-    'hierarchical' => true,
+    'hierarchical' => false,
     'has_archive' => true,
     'supports' => array('title', 'editor', 'thumbnail'),
     'rewrite' => array(
@@ -96,4 +100,70 @@ EOT;
   }
 }
 register_widget('Featured_Residences_Widget');
+
+// Widget for selected a Residence to navigate to.
+class Residence_Selector_Widget extends WP_Widget {
+  public function __construct() {
+    parent::__construct(
+      'residence_selector',
+      'Residence Selector',
+      array('description' => __('Displays a scrollable list of Residences that link to their pages.'))
+    );
+  }
+
+  public function form($instance) {
+    echo "There are no settings for this Widget.";
+  }
+
+  public function update($new_instance, $old_instance) {
+    return array();
+  }
+
+  public function widget($args, $instance) {
+    global $post;
+    $args = array('post_type' => 'residences', 'nopaging' => TRUE);
+    $loop = new WP_Query($args);
+    $current_post_name = 'belevadere-road';
+    $num_residences = 0;
+    echo '<div id="residence-selector" class="als-container">';
+    echo '<div class="als-viewport">';
+    echo '<ul class="als-wrapper">';
+    while ($loop->have_posts()) {
+      $loop->the_post();
+      $is_current_post = $post->post_name == $current_post_name;
+      if ($is_current_post) {
+        $title = get_the_title();
+        echo "<li class=\"current-residence als-item\">{$title}</li>";
+      }
+      else {
+        $title = sprintf('<a href="%s" title="%s" rel="bookmark">%s</a>', get_permalink(), the_title_attribute('echo=0'), get_the_title());
+        echo "<li class=\"als-item\">{$title}</li>";
+      }
+      $num_residences++;
+    }
+    echo '</ul>';
+    echo '</div>';
+    $path = get_stylesheet_directory_uri();
+    echo "<span class=\"als-next als-bottom\"><img src=\"{$path}/images/thin_bottom_arrow_333.png\" alt=\"next\" title=\"next\"></span>";
+    echo "<span class=\"als-prev als-top\"><img src=\"{$path}/images/thin_top_arrow_333.png\" alt=\"prev\" title=\"previous\"></span>";
+    echo '<div style="clear:both"/>';
+    echo '</div>';
+    $visible_items = $num_residences > 5 ? 5 : $num_residences;
+    $scrolling_items = $num_residences > 2 ? 2 : 1;
+    echo <<<EOT
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $("#residence-selector").als({
+        visible_items: $visible_items,
+        scrolling_items: $scrolling_items,
+        orientation: "vertical",
+        circular: "no",
+        autoscroll: "no",
+    });
+});
+</script>
+EOT;
+  }
+}
+register_widget('Residence_Selector_Widget');
 ?>

@@ -1,15 +1,28 @@
 /**
  * Header
  */
+.site-header {
+    background-color: transparent;
+}
+.site-header .wrap {
+    padding: 20px 0;
+    padding: 2rem 0;
+}
 #front-page-header {
     padding-top: 20px;
     background-color:rgba(0,0,0,0.5);
 }
-#tag-line {
+#tag-line, #description {
     padding: 20px 15px;
     color:rgba(255,255,255,0.8);
     background-color:rgba(0,0,0,0.7);
+    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
+#description a {
+    color: #008de9;
+}
+
 #logo {
     height: 170px;
     background: url( '../images/logo.png' ) no-repeat;
