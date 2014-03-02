@@ -49,7 +49,7 @@ body, .site-header, .site-footer, .nav-primary {
     border: none;
 }
 
-#residence-selector .current-residence,
+#residence-selector .current,
 #page-selector .current-page {
     color: #008de9;
 }

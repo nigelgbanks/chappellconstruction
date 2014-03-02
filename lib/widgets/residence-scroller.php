@@ -1,53 +1,71 @@
 <?php
+/**
+ * Chappell Construction.
+ *
+ * @author  Nigel Banks
+ * @license GPL-2.0+
+ * @link    http://nigelbanks.ca
+ */
 
-add_action('init', 'residence_register');
+class Residence_Rolodex extends Any_List_Scroller_Widget {
 
-// Registers a Residence custom Post type.
-function residence_register() {
-  //Arguments to create post type.
-  $args = array(
-    'label' => 'Residences',
-    'description' => 'Properties in which Chappell Construction have worked on and wish to profile on their site.',
-    'labels' => array(
-      'name' => 'Residences',
-      'singular_label' => 'Residence',
-    ),
-    'public' => true,
-    'show_ui' => true,
-    'capability_type' => 'post',
-    'hierarchical' => false,
-    'has_archive' => true,
-    'supports' => array('title', 'editor', 'thumbnail'),
-    'rewrite' => array(
-      'slug' => 'residences',
-      'with_front' => false,
-    ),
+  /**
+   * Holds widget settings defaults, populated in constructor.
+   *
+   * @var array
+   */
+  protected $defaults = array(
+    'title' => '',
   );
-  // Register custom type.
-  register_post_type('residences' , $args);
 
-  // Register custom taxonmy for type.
-  register_taxonomy(
-    'residence-type',
-    array('residences'),
-    array(
-      'hierarchical' => true,
-      'label' => 'Residence Types',
-      'singular_label' => 'Residence Type',
-      'rewrite' => true,
-      'slug' => 'residence-type',
-    ));
-
-  // Add the Featured term only if it does not exist.
-  if (term_exists('featured', 'residence-type') === NULL) {
-    $featured_category_defaults = array(
-      'slug' => 'featured',
-      'description' => 'Denotes that this residence is supposed to appear on the front page as a featured residence. Only three will be displayed at random.',
+  /**
+   * Create the widget.
+   */
+  public function __construct() {
+    $widget_options = array(
+      'classname'   => 'residence-rolodex',
+      'description' => __('Displays a scrollable list of residences which link to their posts.'),
     );
-    wp_insert_term('Featured', 'residence-type', $featured_category_defaults);
+    $control_options = array(
+      'width'   => 200,
+      'height'  => 250,
+    );
+    parent::__construct(
+      'residence_rolodex',
+      __('Residence Rolodex'),
+      $widget_options,
+      $control_options
+    );
+  }
+
+  /**
+   * Display the widget.
+   */
+  public function widget($args, $instance) {
+    global $post;
+    // Build a list of content pass a long in the $args['list'] variable.
+    $loop = new WP_Query(array(
+              'post_type' => 'residences',
+              'nopaging' => TRUE
+            ));
+    $args['list'] = array();
+    $list = &$args['list'];
+    while ($loop->have_posts()) {
+      $loop->the_post();
+      if (($loop->current_post == 0 && !is_single()) || is_single($post->ID)) {
+        $title = get_the_title();
+        $list[] = "<li class=\"current als-item\">{$title}</li>";
+      }
+      else {
+        $title = sprintf('<a href="%s" title="%s" rel="bookmark">%s</a>', get_permalink(), the_title_attribute('echo=0'), get_the_title());
+        $list[] = "<li class=\"als-item\">{$title}</li>";
+      }
+    }
+    parent::widget($args, $instance);
   }
 }
 
+/*
 // Widget for displaying the Featured Residences.
 class Featured_Residences_Widget extends WP_Widget {
   public function __construct() {
@@ -166,4 +184,4 @@ EOT;
   }
 }
 register_widget('Residence_Selector_Widget');
-?>
+*/

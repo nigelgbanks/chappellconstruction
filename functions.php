@@ -1,10 +1,17 @@
 <?php
+/**
+ * Chappell Construction.
+ *
+ * @author  Nigel Banks
+ * @license GPL-2.0+
+ * @link    http://nigelbanks.ca
+ */
 
-// Start the engine
-require_once(get_template_directory() . '/lib/init.php');
+// Initialize the theme.
+require_once(dirname( __FILE__ ) . '/lib/init.php');
 
 // Disable comments site-wide
-require_once('disable-comments.php');
+//require_once('disable-comments.php');
 
 // -- Pages
 // Front Page
@@ -26,6 +33,7 @@ require_once('disable-comments.php');
 /*     )); */
 /* } */
 
+/*
 // Include custom home page display area's.
 $args = array(
   'name' => 'Front Page Content',
@@ -38,45 +46,37 @@ $args = array(
   'after_title' => '',
 );
 register_sidebar($args);
-
+*/
 // Include custom post type
-require_once('residence.php');
+//require_once('lib/structure/residence.php');
 
-// Child theme (do not remove)
-define('CHILD_THEME_NAME', 'Chappell Construction Theme');
-define('CHILD_THEME_URL', 'http://www.nigelbanks.ca/');
+/* // Child theme (do not remove) */
+/* define('CHILD_THEME_NAME', 'Chappell Construction Theme'); */
+/* define('CHILD_THEME_URL', 'http://www.nigelbanks.ca/'); */
 
-// Add Viewport meta tag for mobile browsers
-add_action('genesis_meta', 'sample_viewport_meta_tag');
-function sample_viewport_meta_tag() {
-  echo '<meta name="viewport" content="width=device-width, initial-scale=1.0"/>';
-}
+/* // Add Viewport meta tag for mobile browsers */
+/* add_action('genesis_meta', 'sample_viewport_meta_tag'); */
+/* function sample_viewport_meta_tag() { */
+/*   echo '<meta name="viewport" content="width=device-width, initial-scale=1.0"/>'; */
+/* } */
 
 // Add support for custom background, but hide it by default.
-$defaults = array(
-  'default-color' => '000000',
-  'default-image' => get_stylesheet_directory_uri() . '/images/front-page-bg.png',
-);
-add_theme_support('custom-background', $defaults);
-add_filter('body_class','remove_custom_bg');
-function remove_custom_bg($classes) {
-  $index = array_search('custom-background', $classes);
-  unset($classes[$index]);
-  return $classes;
-}
+/* $defaults = array( */
+/*   'default-color' => '000000', */
+/*   'default-image' => get_stylesheet_directory_uri() . '/images/front-page-bg.png', */
+/* ); */
+/* add_theme_support('custom-background', $defaults); */
+/* add_filter('body_class','remove_custom_bg'); */
+/* function remove_custom_bg($classes) { */
+/*   $index = array_search('custom-background', $classes); */
+/*   unset($classes[$index]); */
+/*   return $classes; */
+/* } */
 
-// Add HTML5 Support
-add_theme_support('html5');
-
-/**
- * Proper way to enqueue scripts and styles
- */
-function include_any_list_scroller() {
-  wp_enqueue_script('jquery.als-1.3.min.js', get_stylesheet_directory_uri() . '/js/jquery.als-1.3.min.js', array(), '1.3.0', true );
-}
-add_action( 'wp_enqueue_scripts', 'include_any_list_scroller' );
-
+/* // Add HTML5 Support */
+/* add_theme_support('html5'); */
 // Check if the menu exists
+/*
 $menu_exists = wp_get_nav_menu_object('Main');
 
 // If it doesn't exist, let's create it.
@@ -104,5 +104,4 @@ if (!$menu_exists) {
       'menu-item-title' =>  __('Contact'),
       'menu-item-url' => home_url( '/contact/' ),
       'menu-item-status' => 'publish'));
-}
-?>
+      }*/
