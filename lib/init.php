@@ -55,6 +55,7 @@ function chappell_construction_constants() {
   define('CHILD_LIB_URL', CHILD_URL . '/lib');
   define('CHILD_IMAGES_URL', CHILD_URL . '/images');
   define('CHILD_JS_URL', CHILD_LIB_URL . '/js');
+  define('CHILD_CSS_URL', CHILD_LIB_URL . '/css');
 }
 
 
@@ -76,4 +77,7 @@ function chappell_construction_load_framework() {
   require_once(CHILD_STRUCTURE_DIR . '/residence.php');
   // Load Javascript
   require_once(CHILD_JS_DIR . '/load-scripts.php');
+  // Load CSS
+  require_once(CHILD_CSS_DIR . '/load-styles.php');
+
 }

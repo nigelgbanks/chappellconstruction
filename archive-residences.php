@@ -1,19 +1,20 @@
 <?php
 /**
- * Residences Page
- * @package Chappell Construction
- * @author Nigel Banks
+ * Chappell Construction.
+ *
+ * @author  Nigel Banks
+ * @license GPL-2.0+
+ * @link    http://nigelbanks.ca
  */
 
 // Force sidebar-content layout.
 add_filter('genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content');
 
-remove_action('genesis_footer', 'genesis_do_footer');
-//remove_action('genesis_footer', 'genesis_footer_markup_open', 5);
-//remove_action('genesis_footer', 'genesis_footer_markup_close', 15);
-remove_action('genesis_before_footer', 'genesis_footer_widget_areas');
+//remove_action('genesis_footer', 'genesis_do_footer');
+//remove_action('genesis_before_footer', 'genesis_footer_widget_areas');
 
 // Custom Footer for the Residence in focus.
+/*
 add_action('genesis_footer', 'chappell_construction_footer');
 function chappell_construction_footer() {
   $location = "Charlottetown Prince Edward Island";
@@ -23,6 +24,7 @@ function chappell_construction_footer() {
 EOT;
   echo $content;
 }
+*/
 
 genesis();
 ?>
