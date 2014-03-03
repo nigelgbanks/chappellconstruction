@@ -63,6 +63,7 @@ class Residence_Rolodex extends Any_List_Scroller_Widget {
         $list[] = "<li class=\"als-item\">{$title}</li>";
       }
     }
+    wp_reset_query();
     parent::widget($args, $instance);
   }
 }

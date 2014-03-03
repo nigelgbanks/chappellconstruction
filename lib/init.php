@@ -38,6 +38,12 @@ function chappell_construction_theme_support() {
   add_theme_support('genesis-menus', array(
       'primary'   => __( 'Primary Navigation Menu', 'genesis' ),
     ));
+
+  // Add theme support for the footer widgets.
+  add_theme_support('genesis-footer-widgets');
+
+  // Allow short-codes to be used in text widgets.
+  add_filter('widget_text', 'do_shortcode');
 }
 
 add_action('genesis_init', 'chappell_construction_constants', 11);

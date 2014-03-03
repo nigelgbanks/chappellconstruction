@@ -20,7 +20,24 @@ class ACF_Display_Widget extends WP_Widget {
   }
 
   public function form($instance) {
+    global $post;
     echo "There are no settings for this Widget.";
+    print_r(api_acf_get_field_groups());
+    // Build a list of content pass a long in the $args['list'] variable.
+    $wp_query = new WP_Query(array(
+              'post_type' => 'acf',
+              'nopaging' => TRUE
+            ));
+    $data = array();
+    while ($wp_query->have_posts()) {
+      $wp_query->the_post();
+      $data[] = array(
+        //'post' => $post,
+        'fields' => get_field_objects(13),//$post->id),
+      );
+    }
+    //print_r($data);
+    wp_reset_query();
   }
 
   public function update($new_instance, $old_instance) {
