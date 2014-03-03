@@ -46,7 +46,10 @@ EOT;
    * Display the widget.
    */
   public function widget($args, $instance) {
+    extract($args);
+
     $path = CHILD_IMAGES_URL;
+    echo $before_widget;
     echo '<div id="residence-selector" class="als-container">';
     echo '<div class="als-viewport">';
     echo '<ul class="als-wrapper">';
@@ -63,7 +66,7 @@ EOT;
     $count = count($list);
     // Expose as a property.
     $visible_items = $count > 5 ? 5 : $count;
-    $scrolling_items = $count > 2 ? 2 : 1;
+    $scrolling_items = $count > $visible_items ? 3 : 1;
     echo <<<EOT
 <script type="text/javascript">
 jQuery(document).ready(function($) {
@@ -77,5 +80,6 @@ jQuery(document).ready(function($) {
 });
 </script>
 EOT;
+    echo $after_widget;
   }
 }

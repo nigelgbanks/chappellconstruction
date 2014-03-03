@@ -15,18 +15,32 @@
 @import url("../genesis/style.css");
 
 /**
- * Changes to the default style.css for all pages.
+ * Do not highlight everything the user clicks on.
  */
+::-moz-selection {
+    background-color: inherit;
+    color: inherit;
+}
+::selection {
+    background-color: inherit;
+    color: inherit;
+}
 
 /**
  * Layout
  */
-body, .site-header, .site-footer, .nav-primary {
+body, .site-header, .site-footer {
     background-color: black;
     text-align: left;
 }
 .site-header .wrap, .site-footer .wrap {
     padding: 0;
+}
+.nav-primary {
+    background-color:rgba(0,0,0,0.3);
+    text-transform:uppercase;
+    font-weight: bold;
+    text-align: left;
 }
 
 #nav-logo {
@@ -39,21 +53,23 @@ body, .site-header, .site-footer, .nav-primary {
     vertical-align: middle;
 }
 
-#residence-selector {
+/* Widgets ------------------*/
+.sidebar .widget {
+    background-color: #0e0e0e;
     border-radius: 3px;
     padding: 1em;
-    background-color: #090909;
 }
 
-#residence-selector a {
+/* Residence Selector Widget */
+#residence-selector, #residence-selector a {
+    text-transform:uppercase;
+    text-align: center;
+    font-weight: bold;
     border: none;
 }
-
-#residence-selector .current,
-#page-selector .current-page {
+#residence-selector .current {
     color: #008de9;
 }
-
 
 /* Mobile Devices ----------- */
 @media only screen
@@ -82,7 +98,8 @@ a:hover {
     color: #fff;
 }
 
-.genesis-nav-menu .current-menu-item > a {
+.genesis-nav-menu .current-menu-item > a,
+.genesis-nav-menu .current-page-ancestor > a {
     color: #fde152;
 }
 
@@ -163,4 +180,7 @@ div.rsDefault div.rsVideoFrameHolder,
 div.rsDefault div.rsThumbs {
     background: #090909;
     color: #FFF;
+}
+div.rsDefault .rsThumb.rsNavSelected {
+    background: inherit;
 }

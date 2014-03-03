@@ -1,7 +1,7 @@
 /**
  * Header
  */
-.site-header {
+.site-header, .site-footer {
     background-color: transparent;
 }
 .site-header .wrap {
@@ -12,20 +12,28 @@
     padding-top: 20px;
     background-color:rgba(0,0,0,0.5);
 }
-#tag-line, #description {
+/**
+ * Content
+ */
+#tag-line, .content {
     padding: 20px 15px;
     color:rgba(255,255,255,0.8);
     background-color:rgba(0,0,0,0.7);
     margin-bottom: 20px;
     margin-bottom: 2rem;
 }
-#description a {
+.entry {
+    background-color: initial;
+    margin: 0;
+    padding: 0;
+}
+.entry a {
     color: #008de9;
 }
 
 #logo {
     height: 170px;
-    background: url( '../images/logo.png' ) no-repeat;
+    background: url( '../../images/logo.png' ) no-repeat;
     background-size: contain;
     background-position: center;
     margin-bottom: 30px;
@@ -34,26 +42,23 @@
 /**
  * Navigation
  */
-.genesis-nav-menu {
+.nav-primary {
     background-color:rgba(0,0,0,0.3);
     text-transform:uppercase;
     text-align: center;
+    font-weight: bold;
 }
-
 .genesis-nav-menu a {
     padding: 5px 16px;
 }
-
 .genesis-nav-menu a:hover,
 .genesis-nav-menu .current-menu-item > a,
 .genesis-nav-menu .sub-menu .current-menu-item > a:hover {
     color: #fff;
 }
-
 .genesis-nav-menu .current-menu-item > a {
     color: #fde152;
 }
-
 
 /**
  * Layout

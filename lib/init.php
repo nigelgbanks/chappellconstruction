@@ -74,6 +74,7 @@ function chappell_construction_load_framework() {
   // Load Widgets
   require_once(CHILD_WIDGETS_DIR . '/widgets.php');
   // Load Structure
+  require_once(CHILD_STRUCTURE_DIR . '/header.php');
   require_once(CHILD_STRUCTURE_DIR . '/residence.php');
   // Load Javascript
   require_once(CHILD_JS_DIR . '/load-scripts.php');

@@ -20,6 +20,8 @@ function register_residence_post_type() {
       ),
       'public' => true,
       'show_ui' => true,
+      'show_in_menu' => true,
+      'show_in_nav_menus' => true,
       'capability_type' => 'post',
       'hierarchical' => false,
       'has_archive' => true,
