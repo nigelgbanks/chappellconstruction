@@ -21,7 +21,11 @@ add_action('wp_enqueue_scripts', 'chappell_construction_load_scripts');
  * Enqueue the scripts used on the front-end of the site.
  */
 function chappell_construction_load_scripts() {
-  if (is_active_widget(FALSE, FALSE, 'residence_rolodex')) {
+  $widgets = array('residence_rolodex', 'profile_page_list');
+  $active = function($name) {
+    return is_active_widget(FALSE, FALSE, $name);
+  };
+  if (!in_array(FALSE, array_filter($widgets, $active), TRUE)) {
     wp_enqueue_script('als');
   }
 }

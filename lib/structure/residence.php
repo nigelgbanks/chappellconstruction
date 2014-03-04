@@ -16,6 +16,7 @@ function register_residence_post_type() {
       'description' => 'Properties in which Chappell Construction have worked on and wish to profile on their site.',
       'labels' => array(
         'name' => 'Residences',
+        'menu_name' => 'Residences',
         'singular_label' => 'Residence',
       ),
       'public' => true,

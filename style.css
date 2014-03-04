@@ -42,6 +42,20 @@ body, .site-header, .site-footer {
     font-weight: bold;
     text-align: left;
 }
+.widget-title {
+    font-size: 1.5em;
+}
+
+.entry {
+    background-color: inherit;
+    margin: 0px;
+    padding: 0px;
+}
+
+.entry-content a {
+    border: none;
+    color: #008de9;
+}
 
 #nav-logo {
     height: 48px;
