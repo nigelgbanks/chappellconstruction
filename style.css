@@ -45,6 +45,9 @@ body, .site-header, .site-footer {
 .widget-title {
     font-size: 1.5em;
 }
+.widget {
+    color: white;
+}
 
 .entry {
     background-color: inherit;
