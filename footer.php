@@ -1,7 +1,6 @@
 <?php
 // Do not display the default footer or the widget areas.
 remove_action('genesis_footer', 'genesis_do_footer');
-remove_action('genesis_before_footer', 'genesis_footer_widget_areas');
 
 genesis_structural_wrap( 'site-inner', 'close' );
 echo '</div>'; //* end .site-inner or #inner

@@ -40,7 +40,7 @@ function chappell_construction_theme_support() {
     ));
 
   // Add theme support for the footer widgets.
-  add_theme_support('genesis-footer-widgets');
+  add_theme_support('genesis-footer-widgets', 1);
 
   // Allow short-codes to be used in text widgets.
   add_filter('widget_text', 'do_shortcode');

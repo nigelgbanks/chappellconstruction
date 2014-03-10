@@ -29,7 +29,7 @@
 /**
  * Layout
  */
-body, .site-header, .site-footer {
+body, .site-header, .site-footer, .footer-widgets {
     background-color: black;
     text-align: left;
 }
@@ -42,8 +42,9 @@ body, .site-header, .site-footer {
     font-weight: bold;
     text-align: left;
 }
-.widget-title {
+.widget-title, .footer-widgets .widget-title {
     font-size: 1.5em;
+    color: #333;
 }
 .widget {
     color: white;
