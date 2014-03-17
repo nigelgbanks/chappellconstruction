@@ -14,6 +14,7 @@ add_action('wp_enqueue_scripts', 'chappell_construction_register_scripts');
 function chappell_construction_register_scripts() {
   $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
   wp_register_script('als', CHILD_JS_URL . "/jquery.als-1.3$suffix.js", array('jquery'), '1.3.0', TRUE);
+  wp_register_script('responsive-menu', CHILD_JS_URL . "/responsive-menu.js", array('jquery'), '1.0.0', TRUE);
 }
 
 add_action('wp_enqueue_scripts', 'chappell_construction_load_scripts');

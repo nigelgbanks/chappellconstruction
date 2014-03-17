@@ -22,7 +22,7 @@ add_action('genesis_header', 'chappell_construction_do_front_page_header');
 
 // Display the tag line.
 add_action('genesis_before_content', function() {
-    echo '<div id="tag-line">' . get_bloginfo('description') . '</div>';
+    echo '<div id="tag-line"><strong>' . get_bloginfo('description') . '</strong></div>';
   });
 
 // Only display the page content.

@@ -23,6 +23,7 @@
 #tag-line {
     margin-bottom: 20px;
     margin-bottom: 2rem;
+    text-align: center;
 }
 .entry {
     background-color: initial;
@@ -53,6 +54,7 @@
 .genesis-nav-menu a {
     padding: 5px 16px;
 }
+.content a:hover,
 .genesis-nav-menu a:hover,
 .genesis-nav-menu .current-menu-item > a,
 .genesis-nav-menu .sub-menu .current-menu-item > a:hover {
