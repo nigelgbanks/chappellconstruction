@@ -20,7 +20,7 @@ add_action('genesis_entry_header', function() {
 remove_all_actions('genesis_sidebar');
 add_action('genesis_sidebar', function() {
     $src = CHILD_IMAGES_URL . '/contact-page-house.jpg';
-    echo "<img src='$src'/>";
+    echo "<img src='$src' class='collapsed-hide'/>";
   });
 
 // Add custom css for this page.
@@ -36,7 +36,7 @@ add_action('wp_enqueue_scripts', function() {
 // Add Location Footer.
 add_action('genesis_footer', function() {
     $src = CHILD_IMAGES_URL . '/logo_small.png';
-    echo "<img src='$src' class='collapsed-hide'/>";
+    echo "<img src='$src'/>";
     the_field('contact_info');
 });
 
