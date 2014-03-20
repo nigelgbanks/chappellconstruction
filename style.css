@@ -221,3 +221,10 @@ div.rsDefault div.rsThumbs {
 div.rsDefault .rsThumb.rsNavSelected {
     background: inherit;
 }
+
+/* Hide Contact Image on mobile */
+@media only screen and (max-width: 1023px) {
+    .collapsed-hide {
+        display: none;
+    }
+}

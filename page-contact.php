@@ -36,7 +36,7 @@ add_action('wp_enqueue_scripts', function() {
 // Add Location Footer.
 add_action('genesis_footer', function() {
     $src = CHILD_IMAGES_URL . '/logo_small.png';
-    echo "<img src='$src'/>";
+    echo "<img src='$src' class='collapsed-hide'/>";
     the_field('contact_info');
 });
 
