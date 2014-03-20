@@ -102,6 +102,9 @@
 .featured-posts {
     text-align: center;
 }
+.featured-content .entry {
+    width: 30%;
+}
 
 /**
  * Layout
