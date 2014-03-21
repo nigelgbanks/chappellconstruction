@@ -62,7 +62,7 @@ class Profile_Page_List extends Any_List_Scroller_Widget {
     $args['list'] = array(
       $item($team),
       $item($history),
-      $item($awards),
+      //$item($awards),
     );
     parent::widget($args, $instance);
   }
