@@ -12,7 +12,7 @@ add_filter('genesis_pre_get_option_site_layout', '__genesis_return_content_sideb
 
 remove_all_actions('genesis_entry_header');
 add_action('genesis_entry_header', function() {
-    $src = CHILD_IMAGES_URL . '/logo_med.png';
+    $src = CHILD_IMAGES_URL . '/logo_small.png';
     echo "<img src='$src'/>";
   });
 
