@@ -23,7 +23,7 @@ class Profile_Page_List extends Any_List_Scroller_Widget {
     );
     parent::__construct(
       'profile_page_list',
-      __('Profile Page List'),
+      __('Sub Page List'),
       $widget_options,
       $control_options
     );
@@ -33,14 +33,45 @@ class Profile_Page_List extends Any_List_Scroller_Widget {
    * Settings form.
    */
   public function form($instance) {
-    echo "There are no settings for this Widget.";
+    $instance = wp_parse_args($instance, array('page' => ''));
+    $pages = get_posts(array(
+               'post_type' => 'page', 'post_status' => 'publish',
+               'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC',
+               'fields' => array('ID', 'name'),
+             ));
+    $page = strip_tags($instance['page']);
+    $page_label = 'Page:';
+    $page_field_id = $this->get_field_id('page');
+    $page_field_name = $this->get_field_name('page');
+    $options = array();
+    // Map $Pages to the results.
+    foreach ($pages as $val) {
+      $children = get_page_children($val->ID, $pages);
+      if (!empty($children)) {
+        $options[] = array($val->ID, $val->post_title);
+      }
+    }
+    $to_html = function($option) use ($page) {
+      list($value, $label) = $option;
+      $selected = selected($page, $value, FALSE);
+      return "<option value='{$value}' $selected>{$label}</option>";
+    };
+    $options = implode("\n", array_map($to_html, $options));
+    echo <<<EOT
+ <label for="{$page_field_id}">{$page_label}</label>
+<select name="{$page_field_name}" id="{$page_field_id}?>" class="widefat">
+  $options
+</select>
+EOT;
   }
 
   /**
    * Form submit hook.
    */
   public function update($new_instance, $old_instance) {
-    return $new_instance;
+    $instance = $old_instance;
+    $instance['page'] = strip_tags($new_instance['page']);
+    return $instance;
   }
 
   /**
@@ -49,9 +80,13 @@ class Profile_Page_List extends Any_List_Scroller_Widget {
   public function widget($args, $instance) {
     global $post;
     extract($args);
-    $team = get_page_by_path('about-us');
-    $history = get_page_by_path('about-us/goal');
-    $awards = get_page_by_path('about-us/awards');
+    $page = $instance['page'];
+    $pages = get_posts(array(
+               'post_type' => 'page', 'post_status' => 'publish',
+               'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC',
+               'fields' => array('ID', 'name'),
+             ));
+    $children = get_page_children($page, $pages);
     $item = function($page) use ($post) {
       $link = sprintf('<a href="%s" rel="bookmark">%s</a>', get_permalink($page->ID), $page->post_title);
       if ($page->ID == $post->ID) {
@@ -59,11 +94,10 @@ class Profile_Page_List extends Any_List_Scroller_Widget {
       }
       return "<li class=\"als-item\">{$link}</li>";
     };
-    $args['list'] = array(
-      $item($team),
-      $item($history),
-      //$item($awards),
-    );
-    parent::widget($args, $instance);
+    array_unshift($children, get_page($page));
+    $args['list'] = array_map($item, $children);
+    if (!empty($args['list'])) {
+      parent::widget($args, $instance);
+    }
   }
 }
