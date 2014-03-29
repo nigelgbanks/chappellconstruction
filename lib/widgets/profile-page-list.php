@@ -49,9 +49,9 @@ class Profile_Page_List extends Any_List_Scroller_Widget {
   public function widget($args, $instance) {
     global $post;
     extract($args);
-    $team = get_page_by_path('team');
-    $history = get_page_by_path('team/history');
-    $awards = get_page_by_path('team/awards');
+    $team = get_page_by_path('about-us');
+    $history = get_page_by_path('about-us/goal');
+    $awards = get_page_by_path('about-us/awards');
     $item = function($page) use ($post) {
       $link = sprintf('<a href="%s" rel="bookmark">%s</a>', get_permalink($page->ID), $page->post_title);
       if ($page->ID == $post->ID) {

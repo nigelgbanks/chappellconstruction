@@ -150,6 +150,14 @@ a:hover {
 #location + div {
     color: #fff;
 }
+#location + div {
+    color: #fff;
+}
+#designed-by a {
+    text-transform:uppercase;
+    font-weight: bold;
+    border: none;
+}
 
 /*****************************************************
  * generic styling for ALS elements: outer container
